@@ -26,92 +26,48 @@ class intentTest extends Component {
     this.onPressReportScore = this.onPressReportScore.bind(this);
     this.onPressReportResponse = this.onPressReportResponse.bind(this);
 
-
-
-    var config = Firebase.initializeApp({
-       apiKey: "AIzaSyBtd19osk7iO_3P5f822KiGStRh2FIhvug",
-       authDomain: "react-native-test-f147b.firebaseapp.com",
-       databaseURL: "https://react-native-test-f147b.firebaseio.com",
-       projectId: "react-native-test-f147b",
-       storageBucket: "react-native-test-f147b.appspot.com",
-       messagingSenderId: "1014847812995"
-   });
-
-   var database = Firebase.database();
   }
 
-
-
-  // componentDidMount() {
-  //
-  //   this.signup('kraharwood@gmail.com', 'password');
-  //   // this.setUserMobile('XRVHSYV502P3AQmISXIWnDbRsPC3', '207233705dfgs');
-  // }
-
-  // signup(email, pass) {
-  //   try {
-  //       Firebase.auth()
-  //           .createUserWithEmailAndPassword(email, pass);
-  //       console.warn("Account created");
-  //   } catch (error) {
-  //       console.warn(error.toString())
-  //   }
-  // }
-  //
-  // setUserMobile(userId, mobile) {
-  //     let userMobilePath = "/user/" + userId + "/details";
-  //     return Firebase.database().ref(userMobilePath).set({
-  //         mobile: mobile
-  //     })
-  // }
-  //
-  // setOtherInfo(userId, info) {
-  //   let userInfoPath = "/user/" + userId;
-  //   return Firebase.database().ref(userInfoPath).set({info: info})
-  // }
-
-  // sendIntent() {
-  //   SendIntentAndroid.openCalendar();
-  // }
-
+  componentWillMount () {
+    console.warn("sfadf");
+    fetch('http://10.0.3.2:3000/')
+    .then((response) => {
+      console.warn(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+    });
+  }
 
   componentDidMount() {
-    // this.signup('kraharwood@gmail.com', 'password');
-    // this.setOtherInfo('NgEimJHDRidf3Q9CQhJqlcxUEif2', 'hellooooo');
-    // this.setUserMobile('NgEimJHDRidf3Q9CQhJqlcxUEif2', '2072337056');
-    // IntentTestModule.sendLog("Kate", "PLSWORK");
+  
+  }
+
+  componentDidMount() {
+
   }
 
   onPressTouch () {
-    this.refs.jsonAPI.reportTouch('id1', 'id2', 'id3', 'time');
+    // ADD ENDPOINT TESTS
+    // this.refs.jsonAPI.reportTouch('id1', 'id2', 'id3', 'time');
   }
 
   onPressSection () {
-    this.refs.jsonAPI.reportSection('id1', 'id2', 'timeEntered', 'timeIn');
+    // ADD ENDPOINT TESTS
+    // this.refs.jsonAPI.reportSection('id1', 'id2', 'timeEntered', 'timeIn');
   }
 
   onPressReportScore () {
-    this.refs.jsonAPI.reportScore('id1', 'id2', 'id3', 'time',
-      'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
+    // ADD ENDPOINT TESTS
+    // this.refs.jsonAPI.reportScore('id1', 'id2', 'id3', 'time',
+    //   'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
   }
 
   onPressReportResponse () {
-    this.refs.jsonAPI.reportResponse('id1', 'id2', 'id3', 'time',
-      'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
+    // ADD ENDPOINT TESTS
+    // this.refs.jsonAPI.reportResponse('id1', 'id2', 'id3', 'time',
+    //   'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
   }
 
 
   render() {
-
-    // SendIntentAndroid.sendMail("kraharwood@gmail.com", "Test", "test body");
-    // SendIntentAndroid.openCalendar();
-    // if(SendIntentAndroid.openApp('cm.google.android.apps.photos')) { console.warn('yup');}
-    // SendIntentAndroid.openChooserWithOptions({
-    //     subject: 'Story Title',
-    //     text: 'Message Body'
-    //   }, 'Share Story');
-
-    // SendIntentAndroid.openMaps('Piccadilly Circus Station, London, United Kingdom');
 
     return (
       <View style={styles.container}>
