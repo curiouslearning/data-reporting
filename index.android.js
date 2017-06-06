@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   TouchableOpacity,
   NativeModules,
 } from 'react-native';
@@ -17,6 +18,9 @@ class intentTest extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      response: '',
+    }
 
     this.onPressSection = this.onPressSection.bind(this);
     this.onPressTouch = this.onPressTouch.bind(this);
@@ -27,10 +31,9 @@ class intentTest extends Component {
   }
 
   componentWillMount () {
-    console.warn("sfadf");
     fetch('http://10.0.3.2:3000/')
     .then((response) => {
-      console.warn(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+      console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
     });
   }
 
@@ -67,29 +70,58 @@ class intentTest extends Component {
     this.refs.jsonAPI.getData();
   }
 
+  getRequest () {
+
+    fetch('http://10.0.3.2:3000/')
+    .then((response) => {
+      console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+      this.setState({response: JSON.stringify(response)});
+    });
+
+  }
+
+  postRequest () {
+    ///api/curious/
+    fetch('http://10.0.3.2:3000/api/curious/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'Curious',
+        password: 'Learner',
+      })
+    })
+    .then((response) => {
+      console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+      this.setState({response: JSON.stringify(response)});
+    });
+  }
 
   render() {
 
     return (
       <View style={styles.container}>
-        <JsonAPI
-          ref={'jsonAPI'}/>
+        
+        <View
+          style={styles.buttonView}
+          >
+        <Button
+          color="#841584"
+          title={"GET Request"}
+          onPress={() => this.getRequest()}
+        />
+      </View>
 
-        <TouchableOpacity onPress={this.onPressTouch}>
-          <Text>CLICK HERE for reportTouch</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onPressSection}>
-          <Text>CLICK HERE for reportSection</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onPressReportScore}>
-          <Text>CLICK HERE for reportScore</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onPressReportResponse}>
-          <Text>CLICK HERE for reportResponse</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onPressGetData}>
-          <Text>CLICK HERE for getData</Text>
-        </TouchableOpacity>
+        <Button
+          title={"POST Request"}
+          onPress={() => this.postRequest()}
+        />
+
+      <Text
+        style={styles.text}
+        >{this.state.response}</Text>
       </View>
     );
   }
@@ -102,7 +134,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
+  text: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
@@ -111,6 +143,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  buttonView: {
+    marginBottom: 20,
   },
 });
 
