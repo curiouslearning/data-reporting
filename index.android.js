@@ -61,7 +61,6 @@ class intentTest extends Component {
   }
 
   onPressReportResponse () {
-    // ADD ENDPOINT TESTS
     // this.refs.jsonAPI.reportResponse('id1', 'id2', 'id3', 'time',
     //   'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
   }
