@@ -72,10 +72,26 @@ class intentTest extends Component {
       console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
       this.setState({response: JSON.stringify(response)});
     });
+    
   }
   
   postRequest () {
-    
+    ///api/curious/
+    fetch('http://10.0.3.2:3000/api/curious/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'Curious',
+        password: 'Learner',
+      })
+    })
+    .then((response) => {
+      console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+      this.setState({response: JSON.stringify(response)});
+    });
   }
   
   render() {
@@ -98,7 +114,9 @@ class intentTest extends Component {
           onPress={() => this.postRequest()}
         />
       
-      <Text>{this.state.response}</Text>
+      <Text
+        style={styles.text}
+        >{this.state.response}</Text>
       </View>
     );
   }
@@ -111,7 +129,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
-  welcome: {
+  text: {
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
