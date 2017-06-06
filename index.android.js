@@ -9,12 +9,9 @@ import {
   NativeModules,
 } from 'react-native';
 
-import SendIntentAndroid from 'react-native-send-intent';
 import JsonAPI from './jsonAPI';
 
 let Firebase = require('firebase');
-
-let IntentTestModule = NativeModules.IntentTest;
 
 class intentTest extends Component {
 
