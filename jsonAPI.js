@@ -32,10 +32,10 @@ class JsonAPI extends Component {
 
   getData() {
     try {
-      const value = await AsyncStorage.getItem('data');
+      const value = AsyncStorage.getItem('data');
         if (value !== null){
           // We have data!!
-          console.log(value);
+          console.warn(value);
         }
       } catch (error) {
         // error retreiving data
@@ -57,7 +57,7 @@ class JsonAPI extends Component {
 
   reportData (JSONBlob) {
     try {
-      await AsyncStorage.setItem('data', JSONBlob);
+      AsyncStorage.setItem('data', JSONBlob);
     } catch (error) {
       // Error saving data
     }
