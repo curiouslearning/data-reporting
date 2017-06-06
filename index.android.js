@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Button,
   TouchableOpacity,
   NativeModules,
 } from 'react-native';
@@ -17,6 +18,9 @@ class intentTest extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      response: '',
+    }
 
     this.onPressSection = this.onPressSection.bind(this);
     this.onPressTouch = this.onPressTouch.bind(this);
@@ -26,10 +30,9 @@ class intentTest extends Component {
   }
 
   componentWillMount () {
-    console.warn("sfadf");
     fetch('http://10.0.3.2:3000/')
     .then((response) => {
-      console.warn(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+      console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
     });
   }
 
@@ -62,26 +65,40 @@ class intentTest extends Component {
     //   'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
   }
 
-
+  getRequest () {
+    
+    fetch('http://10.0.3.2:3000/')
+    .then((response) => {
+      console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+      this.setState({response: JSON.stringify(response)});
+    });
+  }
+  
+  postRequest () {
+    
+  }
+  
   render() {
 
     return (
       <View style={styles.container}>
-        <JsonAPI
-          ref={'jsonAPI'}/>
-
-        <TouchableOpacity onPress={this.onPressTouch}>
-          <Text>CLICK HERE for reportTouch</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onPressSection}>
-          <Text>CLICK HERE for reportSection</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onPressReportScore}>
-          <Text>CLICK HERE for reportScore</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={this.onPressReportResponse}>
-          <Text>CLICK HERE for reportResponse</Text>
-        </TouchableOpacity>
+        
+        <View
+          style={styles.buttonView}
+          >
+        <Button 
+          color="#841584"
+          title={"GET Request"}
+          onPress={() => this.getRequest()}
+        />
+      </View>
+        
+        <Button 
+          title={"POST Request"}
+          onPress={() => this.postRequest()}
+        />
+      
+      <Text>{this.state.response}</Text>
       </View>
     );
   }
@@ -103,6 +120,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
+  },
+  buttonView: {
+    marginBottom: 20,
   },
 });
 

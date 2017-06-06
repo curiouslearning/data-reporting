@@ -31,15 +31,15 @@ class JsonAPI extends Component {
 
   reportData (JSONBlob) {
     // this test endpoint needs to be changed every 48 hours
-    fetch('http://requestb.in/17ljt931', { 
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSONBlob, // not sure exactly how the data should appear when sent, but here's the idea
-    })
-    .then((data) => console.warn(`data = ${JSON.stringify(data)}`));
+    // fetch('http://requestb.in/17ljt931', { 
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSONBlob, // not sure exactly how the data should appear when sent, but here's the idea
+    // })
+    // .then((data) => console.warn(`data = ${JSON.stringify(data)}`));
   }
 
 
