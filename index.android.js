@@ -9,12 +9,9 @@ import {
   NativeModules,
 } from 'react-native';
 
-import SendIntentAndroid from 'react-native-send-intent';
 import JsonAPI from './jsonAPI';
 
 let Firebase = require('firebase');
-
-let IntentTestModule = NativeModules.IntentTest;
 
 class intentTest extends Component {
 
@@ -62,7 +59,6 @@ class intentTest extends Component {
   }
 
   onPressReportResponse () {
-    // ADD ENDPOINT TESTS
     // this.refs.jsonAPI.reportResponse('id1', 'id2', 'id3', 'time',
     //   'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
   }
