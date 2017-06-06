@@ -15,19 +15,19 @@ class JsonAPI extends Component {
   }
 
   reportSection (appID, secID, timeEntered, totalTime) {
-    this.reportData( "{“key”:IN_APP_SECTION, “value”:{app_ID : ${appID}, “section_ID” : ${secID}, “Time_enter_section” : ${timeEntered}, “Time_in_section” : ${totalTime}}}");
+    this.reportData( `{“key”:IN_APP_SECTION, “value”:{app_ID : ${appID}, “section_ID” : ${secID}, “Time_enter_section” : ${timeEntered}, “Time_in_section” : ${totalTime}}}`);
   }
 
   reportScore (appID, secID, timeStamp, item, foilList, score, minScore, maxScore) {
-    this.reportData("{“key”:IN_APP_SCORE, “value”:{“app_ID” : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “Item_selected” : ${item}, “Foil_list” : ${foilList}, “score” : ${score}, “min_score_possible” : ${minScore}, “max_score_possible” : ${maxScore}}}");
+    this.reportData(`{“key”:IN_APP_SCORE, “value”:{“app_ID” : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “Item_selected” : ${item}, “Foil_list” : ${foilList}, “score” : ${score}, “min_score_possible” : ${minScore}, “max_score_possible” : ${maxScore}}}`);
   }
 
   reportTouch (appID, secID, timeStamp, objID) {
-    this.reportData("{“key”:IN_APP_TOUCH, “value”:{app_ID : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “object_ID” : ${objID}}}");
+    this.reportData(`{“key”:IN_APP_TOUCH, “value”:{app_ID : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “object_ID” : ${objID}}}`);
   }
 
   reportResponse (appID, secID, responseID, timeStamp, item, foilList, responseTime, responseValue) {
-    this.reportData("{“key”:IN_APP_RESPONSE, “value”:{“app_ID” : ${appID}, “section_ID”  : ${secID}, “Response_ID” : ${responseID}, “Time_stamp” : ${timeStamp}, “Item_selected” : ${item}, “Foil_list” : ${foilList}, “response_time” : ${responseTime}, “response_value” : ${responseValue}}}");
+    this.reportData(`{“key”:IN_APP_RESPONSE, “value”:{“app_ID” : ${appID}, “section_ID”  : ${secID}, “Response_ID” : ${responseID}, “Time_stamp” : ${timeStamp}, “Item_selected” : ${item}, “Foil_list” : ${foilList}, “response_time” : ${responseTime}, “response_value” : ${responseValue}}}`);
   }
 
   getData() {
