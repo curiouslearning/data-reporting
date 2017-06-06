@@ -5,7 +5,7 @@ const app = express()
 app.use(bodyParser.json())
 
 // Example of GET endpoint
-app.get('/',  (req, res) => {
+app.get('/api/curious/',  (req, res) => { // added /api/curious/
   res.send('Hello World!')
 });
 

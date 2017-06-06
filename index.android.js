@@ -25,6 +25,7 @@ class intentTest extends Component {
     this.onPressTouch = this.onPressTouch.bind(this);
     this.onPressReportScore = this.onPressReportScore.bind(this);
     this.onPressReportResponse = this.onPressReportResponse.bind(this);
+    this.onPressGetData = this.onPressGetData.bind(this);
 
   }
 
@@ -37,7 +38,7 @@ class intentTest extends Component {
   }
 
   componentDidMount() {
-  
+
   }
 
   componentDidMount() {
@@ -66,6 +67,10 @@ class intentTest extends Component {
     //   'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
   }
 
+  onPressGetData () {
+    this.refs.jsonAPI.getData();
+  }
+
 
   render() {
 
@@ -85,6 +90,9 @@ class intentTest extends Component {
         </TouchableOpacity>
         <TouchableOpacity onPress={this.onPressReportResponse}>
           <Text>CLICK HERE for reportResponse</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={this.onPressGetData}>
+          <Text>CLICK HERE for getData</Text>
         </TouchableOpacity>
       </View>
     );

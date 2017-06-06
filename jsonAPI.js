@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  AsyncStorage,
   StyleSheet,
   Text,
   View,
@@ -29,17 +30,37 @@ class JsonAPI extends Component {
     this.reportData("{“key”:IN_APP_RESPONSE, “value”:{“app_ID” :" + appID + ", “section_ID”  :" + secID + ", “Response_ID” :" + responseID + ", “Time_stamp” :" + timeStamp + ", “Item_selected” :" + item + ", “Foil_list” :" + foilList + ", “response_time” :" + responseTime + ", “response_value” :" + responseValue +"}}");
   }
 
+  getData() {
+    try {
+      const value = await AsyncStorage.getItem('data');
+        if (value !== null){
+          // We have data!!
+          console.log(value);
+        }
+      } catch (error) {
+        // error retreiving data
+      }
+  }
+
+  // reportData (JSONBlob) {
+  //   // this test endpoint needs to be changed every 48 hours
+  //   fetch('http://requestb.in/17ljt931', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSONBlob, // not sure exactly how the data should appear when sent, but here's the idea
+  //   })
+  //   .then((data) => console.warn(`data = ${JSON.stringify(data)}`));
+  // }
+
   reportData (JSONBlob) {
-    // this test endpoint needs to be changed every 48 hours
-    fetch('http://requestb.in/17ljt931', { 
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSONBlob, // not sure exactly how the data should appear when sent, but here's the idea
-    })
-    .then((data) => console.warn(`data = ${JSON.stringify(data)}`));
+    try {
+      await AsyncStorage.setItem('data', JSONBlob);
+    } catch (error) {
+      // Error saving data
+    }
   }
 
 
