@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  AsyncStorage,
   StyleSheet,
   Text,
   View,
@@ -11,8 +12,10 @@ import {
 } from 'react-native';
 
 import JsonAPI from './jsonAPI';
+import asynctesting from './asynctesting';
 
 let Firebase = require('firebase');
+
 
 class intentTest extends Component {
 
@@ -64,6 +67,7 @@ class intentTest extends Component {
   onPressReportResponse () {
     this.refs.jsonAPI.reportResponse('id1', 'id2', 'id3', 'time',
       'itemSelected', ['foil1', 'foil2', 'foil3'], 'score', 'minscore', 'maxscore');
+
   }
 
   onPressGetData () {
@@ -99,11 +103,30 @@ class intentTest extends Component {
     });
   }
 
+  storeData () {;
+    v = asynctesting.storeSection(["appy","3","12","20"]);
+    this.setState({response: JSON.stringify(v)});
+  }
+
+  async retrieveData () {
+    await AsyncStorage.getItem('@Section:0',(err,result) => {
+      this.setState({response: JSON.stringify(result)});
+    });
+    //   if (value !== null){
+    //     // We have data!!
+    //     this.setState({response: JSON.stringify(value)});
+    //   }
+    // } catch (error) {
+    //   this.setState({response: "null :c"});
+    // }
+
+  }
+
   render() {
 
     return (
       <View style={styles.container}>
-        
+
         <View
           style={styles.buttonView}
           >
@@ -117,6 +140,14 @@ class intentTest extends Component {
         <Button
           title={"POST Request"}
           onPress={() => this.postRequest()}
+        />
+        <Button
+          title={"Store Data"}
+          onPress={() => this.storeData()}
+        />
+        <Button
+          title={"Retrieve Stored Data"}
+          onPress={() => this.retrieveData()}
         />
 
       <Text
