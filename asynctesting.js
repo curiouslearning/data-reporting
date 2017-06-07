@@ -13,10 +13,6 @@ const touch = "@Touch";
 const repsonse = "@Response";
 
 
-
-
-
-
 async function storeSection (appID, secID, timeEntered, totalTime) {
   let obj = `{“key”:IN_APP_SECTION, “value”:{app_ID : ${appID}, “section_ID” : ${secID}, “Time_enter_section” : ${timeEntered}, “Time_in_section” : ${totalTime}}}`
   let key = section.concat(":",sectionNum.toString());
@@ -25,23 +21,23 @@ async function storeSection (appID, secID, timeEntered, totalTime) {
   } catch (error) {
       console.warn("yo");
     }
+    console.warn("heck");
     sectionNum++;
-    return key.concat("___",JSON.stringify(obj));
+    return key; //TODO: this value needs to be returned
 }
-
 
 async function storeScore (appID, secID, timeStamp, item, foilList, score, minScore, maxScore) {
   let obj = `{“key”:IN_APP_SCORE, “value”:{“app_ID” : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “Item_selected” : ${item}, “Foil_list” : ${foilList}, “score” : ${score}, “min_score_possible” : ${minScore}, “max_score_possible” : ${maxScore}}}`
   let key = score.concat(":",scoreNum.toString());
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(obj));
+    AsyncStorage.setItem(key, JSON.stringify(obj));
   } catch (error) {
       console.warn("yo");
     }
     scoreNum++;
-    return key.concat("___",JSON.stringify(obj));
+    //return key.concat("___",JSON.stringify(obj));
+    return key;
 }
-
 
 async function storeTouch (appID, secID, timeStamp, objID) {
   let obj = `{“key”:IN_APP_TOUCH, “value”:{app_ID : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “object_ID” : ${objID}}}`
@@ -52,7 +48,8 @@ async function storeTouch (appID, secID, timeStamp, objID) {
       console.warn("yo");
     }
     touchNum++;
-    return key.concat("___",JSON.stringify(obj));
+    //return key.concat("___",JSON.stringify(obj));
+    return key;
 }
 
 async function storeResponse (appID, secID, responseID, timeStamp, item, foilList, responseTime, responseValue) {
@@ -64,7 +61,8 @@ async function storeResponse (appID, secID, responseID, timeStamp, item, foilLis
       console.warn("yo");
     }
     responseNum++;
-    return key.concat("___",JSON.stringify(obj));
+    //return key.concat("___",JSON.stringify(obj));
+    return key;
 }
 
 
