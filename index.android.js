@@ -14,11 +14,15 @@ import {
 import JsonAPI from './jsonAPI';
 import asynctesting from './asynctesting';
 
+import curious from './curiousDataAPI';
 let Firebase = require('firebase');
 
+<<<<<<< HEAD
 //TODO: look into fetch and https, how to upload data out of AsyncStorage
 //TODO: what happens when a fetch request doesn't resopond
 
+=======
+>>>>>>> master
 
 class intentTest extends Component {
 
@@ -88,22 +92,29 @@ class intentTest extends Component {
   }
 
   postRequest () {
-    ///api/curious/
-    fetch('http://10.0.3.2:3000/api/curious/', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name: 'Curious',
-        password: 'Learner',
-      })
-    })
+
+    curious.reportSection("curious", "learning", "now", "later")
     .then((response) => {
-      console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
       this.setState({response: JSON.stringify(response)});
-    });
+    })
+    .catch(console.log);
+    
+    ///api/curious/
+    // fetch('http://10.0.3.2:3000/api/curious/', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //     name: 'Curious',
+    //     password: 'Learner',
+    //   })
+    // })
+    // .then((response) => {
+    //   console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
+    //   this.setState({response: JSON.stringify(response)});
+    // });
   }
 
   storeData () {
