@@ -103,15 +103,21 @@ class intentTest extends Component {
     });
   }
 
-  storeData () {;
+  storeData () {
     let v = asynctesting.storeSection(["appy","3","12","20"]);
     this.setState({response: JSON.stringify(v)});
   }
 
-  async retrieveData () {
-    await AsyncStorage.getItem('@Section:3',(err,result) => { //removeItem not working, getItem works fine
+  retrieveData () {
+      AsyncStorage.getItem('@Section:2',(err,result) => { //removeItem not working, getItem works fine
       this.setState({response: JSON.stringify(result)});
     });
+  }
+
+    clearData () {
+      AsyncStorage.clear();
+    }
+
     //   if (value !== null){
     //     // We have data!!
     //     this.setState({response: JSON.stringify(value)});
@@ -120,7 +126,7 @@ class intentTest extends Component {
     //   this.setState({response: "null :c"});
     // }
 
-  }
+
 
   render() {
 
@@ -148,6 +154,10 @@ class intentTest extends Component {
         <Button
           title={"Retrieve Stored Data"}
           onPress={() => this.retrieveData()}
+        />
+        <Button
+          title={"Clear Stored Data"}
+          onPress={() => this.clearData()}
         />
 
       <Text

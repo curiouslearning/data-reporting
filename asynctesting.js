@@ -21,9 +21,8 @@ function storeSection (appID, secID, timeEntered, totalTime) {
   try {
     AsyncStorage.setItem(key, JSON.stringify(obj));
   } catch (error) {
-      console.warn("yo");
+      //error
     }
-    console.warn("heck");
     sectionNum++;
     return key; //TODO: this value needs to be returned
 }
