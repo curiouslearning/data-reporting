@@ -66,6 +66,8 @@ function storeResponse (appID, secID, responseID, timeStamp, item, foilList, res
     return key;
 }
 
+// look into checking storage space
+
 
 export default {
   storeSection,

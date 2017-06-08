@@ -16,6 +16,9 @@ import asynctesting from './asynctesting';
 
 let Firebase = require('firebase');
 
+//TODO: look into fetch and https, how to upload data out of AsyncStorage
+//TODO: what happens when a fetch request doesn't resopond
+
 
 class intentTest extends Component {
 
