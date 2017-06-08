@@ -2,6 +2,8 @@ import {
   AsyncStorage,
 } from 'react-native';
 
+import jsonAPI from './jsonAPI';
+
 const sectionNum = 0;
 const scoreNum = 0;
 const touchNum = 0;
@@ -13,11 +15,11 @@ const touch = "@Touch";
 const repsonse = "@Response";
 
 
-async function storeSection (appID, secID, timeEntered, totalTime) {
-  let obj = `{“key”:IN_APP_SECTION, “value”:{app_ID : ${appID}, “section_ID” : ${secID}, “Time_enter_section” : ${timeEntered}, “Time_in_section” : ${totalTime}}}`
+function storeSection (appID, secID, timeEntered, totalTime) {
+  let obj = jsonAPI.createJSONSection(appID,secID,timeEntered,totalTime);
   let key = section.concat(":",sectionNum.toString());
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(obj));
+    AsyncStorage.setItem(key, JSON.stringify(obj));
   } catch (error) {
       console.warn("yo");
     }
@@ -26,8 +28,8 @@ async function storeSection (appID, secID, timeEntered, totalTime) {
     return key; //TODO: this value needs to be returned
 }
 
-async function storeScore (appID, secID, timeStamp, item, foilList, score, minScore, maxScore) {
-  let obj = `{“key”:IN_APP_SCORE, “value”:{“app_ID” : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “Item_selected” : ${item}, “Foil_list” : ${foilList}, “score” : ${score}, “min_score_possible” : ${minScore}, “max_score_possible” : ${maxScore}}}`
+function storeScore (appID, secID, timeStamp, item, foilList, score, minScore, maxScore) {
+  let obj = jsonAPI.createJSONScore(appID, secID, timeStamp, item, foilList, score, minScore, maxScore);
   let key = score.concat(":",scoreNum.toString());
   try {
     AsyncStorage.setItem(key, JSON.stringify(obj));
@@ -39,11 +41,11 @@ async function storeScore (appID, secID, timeStamp, item, foilList, score, minSc
     return key;
 }
 
-async function storeTouch (appID, secID, timeStamp, objID) {
-  let obj = `{“key”:IN_APP_TOUCH, “value”:{app_ID : ${appID}, “section_ID”  : ${secID}, “Time_stamp” : ${timeStamp}, “object_ID” : ${objID}}}`
+function storeTouch (appID, secID, timeStamp, objID) {
+  let obj = jsonAPI.createJSONTouch(appID, secID, timeStamp, objID);
   let key = touch.concat(":",touchNum.toString());
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(obj));
+    AsyncStorage.setItem(key, JSON.stringify(obj));
   } catch (error) {
       console.warn("yo");
     }
@@ -52,11 +54,11 @@ async function storeTouch (appID, secID, timeStamp, objID) {
     return key;
 }
 
-async function storeResponse (appID, secID, responseID, timeStamp, item, foilList, responseTime, responseValue) {
-  let obj = `{“key”:IN_APP_RESPONSE, “value”:{“app_ID” : ${appID}, “section_ID”  : ${secID}, “Response_ID” : ${responseID}, “Time_stamp” : ${timeStamp}, “Item_selected” : ${item}, “Foil_list” : ${foilList}, “response_time” : ${responseTime}, “response_value” : ${responseValue}}}`
+function storeResponse (appID, secID, responseID, timeStamp, item, foilList, responseTime, responseValue) {
+  let obj = jsonAPI.createJSONResponse(appID, secID, responseID, timeStamp, item, foilList, responseTime, responseValue);
   let key = response.concat(":",responseNum.toString());
   try {
-    await AsyncStorage.setItem(key, JSON.stringify(obj));
+    AsyncStorage.setItem(key, JSON.stringify(obj));
   } catch (error) {
       console.warn("yo");
     }

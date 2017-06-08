@@ -109,7 +109,7 @@ class intentTest extends Component {
   }
 
   async retrieveData () {
-    await AsyncStorage.getItem('@Section:0',(err,result) => { //removeItem not working, getItem works fine
+    await AsyncStorage.getItem('@Section:3',(err,result) => { //removeItem not working, getItem works fine
       this.setState({response: JSON.stringify(result)});
     });
     //   if (value !== null){
