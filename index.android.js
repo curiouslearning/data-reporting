@@ -17,6 +17,11 @@ import asynctesting from './asynctesting';
 import curious from './curiousDataAPI';
 let Firebase = require('firebase');
 
+const jsonObj = {
+  name: 'Curious',
+  password: 'Learner',
+}
+
 
 //TODO: look into fetch and https, how to upload data out of AsyncStorage
 //TODO: what happens when a fetch request doesn't resopond
@@ -90,13 +95,16 @@ class intentTest extends Component {
 
   }
 
+
+
   postRequest () {
 
-    curious.reportSection("curious", "learning", "now", "later")
-    .then((response) => {
-      this.setState({response: JSON.stringify(response)});
-    })
-    .catch(console.log);
+    this.setState({response: JSON.stringify(curious.postToServer(jsonObj,'http://10.0.3.2:3000/api/curious/'))});
+    // .then((response) => {
+    //   this.setState({response: JSON.stringify(response)});
+    // })
+    // .catch(console.log);
+  }
 
     ///api/curious/
     // fetch('http://10.0.3.2:3000/api/curious/', {
@@ -114,10 +122,10 @@ class intentTest extends Component {
     //   console.log(`HEEEHEHEHEH response = ${JSON.stringify(response)}`);
     //   this.setState({response: JSON.stringify(response)});
     // });
-  }
+
 
   storeData () {
-    let v = asynctesting.storeSection(["appy","3","12","20"]);
+    let v = curious.reportSection(["appy","3","12","20"]);
     this.setState({response: JSON.stringify(v)});
   }
 
@@ -131,14 +139,13 @@ class intentTest extends Component {
       AsyncStorage.clear();
     }
 
-    //   if (value !== null){
-    //     // We have data!!
-    //     this.setState({response: JSON.stringify(value)});
-    //   }
-    // } catch (error) {
-    //   this.setState({response: "null :c"});
-    // }
+    showKEYS () {
+      this.setState({response: JSON.stringify(curious.showKEYS())});
+    }
 
+    postAll () {
+      curious.postAllToServer();
+    }
 
 
   render() {
@@ -172,6 +179,15 @@ class intentTest extends Component {
           title={"Clear Stored Data"}
           onPress={() => this.clearData()}
         />
+        <Button
+          title={"show all keys"}
+          onPress={() => this.showKEYS()}
+        />
+        <Button
+          title={"post all to server"}
+          onPress={() => this.postAll()}
+        />
+
 
       <Text
         style={styles.text}

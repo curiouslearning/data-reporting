@@ -24,7 +24,7 @@ function storeSection (appID, secID, timeEntered, totalTime) {
       //error
     }
     sectionNum++;
-    return key; //TODO: this value needs to be returned
+    return key;
 }
 
 function storeScore (appID, secID, timeStamp, item, foilList, score, minScore, maxScore) {
