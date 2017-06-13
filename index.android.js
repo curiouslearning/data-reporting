@@ -125,7 +125,7 @@ class intentTest extends Component {
 
 
   storeData () {
-    let v = curious.reportSection(["appy","3","12","20"]);
+    let v = curious.reportSection(["appy","3","12","20",null]);
     this.setState({response: JSON.stringify(v)});
   }
 
